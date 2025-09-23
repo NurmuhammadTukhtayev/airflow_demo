@@ -1,26 +1,16 @@
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.python import PythonOperator
+from common.defaults import default_args
 
-# deafult arguments for the DAG
-default_args = {
-    'owner': 'airflow', 
-    'depends_on_past': False,
-    'start_date': datetime(2025, 9, 22),
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 2,
-    'retry_delay': timedelta(minutes=2),
-}
-
-# simple function to return a name
+# simple function to return a age
 def get_age():
     return 25
 
 # function to return several parameters
 def get_full_name(ti):
-    ti.xcom_push(key='first', value='Nickolas')
-    ti.xcom_push(key='last', value='Halden')
+    ti.xcom_push(key='first', value='John')
+    ti.xcom_push(key='last', value='Doe')
 
 # function to pull XComs
 def pull_xcom(ti):
@@ -38,7 +28,7 @@ def closing_message(status, msg):
 # defining the DAG
 with DAG(
     dag_id='xcom_demo',
-    default_args=default_args,
+    default_args=default_args(),
     description='A simple DAG to demonstrate XComs',
     start_date=datetime(2025, 9, 22),
     schedule='@daily'
