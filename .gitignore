@@ -1,0 +1,54 @@
+# --- Airflow runtime artifacts
+logs/
+airflow_logs/
+airflow_home/logs/
+airflow_home/*.pid
+airflow_home/*.db
+airflow_home/*.sqlite
+airflow_home/airflow-webserver.pid
+
+# Local Airflow configs that can contain secrets
+airflow.cfg
+webserver_config.py
+unittests.cfg
+airflow_settings.yaml
+
+# DAG and plugin caches
+**/__pycache__/
+**/*.py[cod]
+.dag_dependencies/
+.dags_cache/
+.dags_tmp/
+plugins/.cache/
+plugins/__pycache__/
+dags/.ipynb_checkpoints/
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+
+# Python virtual env and tooling caches
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Env files and local overrides with secrets
+.env
+.env.*
+*.env
+docker-compose.override.yml
+docker-compose.local.yml
+*.override.yml
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
